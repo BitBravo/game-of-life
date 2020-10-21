@@ -2,8 +2,6 @@
 
 Game Of Life Angular 10
 
-## Installation
-
 ### Install Node.js
 
 ### Install Angular CLI
