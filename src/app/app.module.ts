@@ -2,20 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { UniverseComponent } from './universe/universe.component';
-import { GenerationsService } from './services/generations.service';
+import { FrameComponent } from './frame';
+import { GenerationService } from './services';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UniverseComponent
+    FrameComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule
   ],
   providers: [
-    GenerationsService
+    GenerationService
   ],
   bootstrap: [AppComponent]
 })

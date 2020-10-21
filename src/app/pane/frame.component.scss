@@ -1,0 +1,52 @@
+$border-color: #666;
+$cell-color: red;
+$stagnation-color: #500;
+$cell-gap: 1px;
+
+:host {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    background-color: #1d1d1d;
+
+    border-style: solid;
+    border-color: $border-color;
+    border-width: 0 1px;
+
+    &:first-child {
+        border-top-width: 1px;
+    }
+
+    &:last-child {
+        border-bottom-width: 1px;
+    }
+
+    &.stagnation {
+        border-color: $stagnation-color;
+    }
+}
+
+.cell {
+    border: 2px solid transparent;
+    margin: $cell-gap;
+}
+
+.cell:hover:not(.running) {
+    border-color: gray;
+    border-style: dotted;
+}
+
+.alive {
+    background-color: $cell-color;
+
+    &.stagnation {
+        background-color: $stagnation-color;
+    }
+}

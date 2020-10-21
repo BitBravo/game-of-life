@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { UniverseComponent } from './universe/universe.component';
+import { FrameComponent } from './frame';
 
 @Component({
   selector: 'gol-root',
@@ -7,9 +7,8 @@ import { UniverseComponent } from './universe/universe.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  sideNavOpen = false;
-  @ViewChild(UniverseComponent)
-  private universe: UniverseComponent;
+  @ViewChild(FrameComponent)
+  private frame: FrameComponent;
 
   noCols = 35;
   noRows = 17;
@@ -17,28 +16,19 @@ export class AppComponent {
   showDecay = false;
   empty = false;
 
-  openSideNav() {
-    this.sideNavOpen = true;
-    this.universe.pause();
-  }
-
-  onSideNavClose() {
-    this.sideNavOpen = false;
-  }
 
   runUniverse() {
-    this.sideNavOpen = false;
-    this.universe.run();
+    this.frame.run();
   }
 
   clearUniverse() {
     this.empty = true;
-    this.universe.clear();
+    this.frame.clear();
   }
 
   restartUniverse() {
     this.empty = false;
-    this.universe.restart();
+    this.frame.restart();
   }
 
   isEmpty() {

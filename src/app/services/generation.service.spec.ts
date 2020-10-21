@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { GenerationsService } from './generations.service';
+import { GenerationService } from './generation.service';
 
 describe('GenerationsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GenerationsService]
+      providers: [GenerationService]
     });
   });
 
-  it('should ...', inject([GenerationsService], (service: GenerationsService) => {
+  it('should ...', inject([GenerationService], (service: GenerationService) => {
     expect(service).toBeTruthy();
   }));
 });

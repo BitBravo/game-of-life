@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UniverseComponent } from './universe.component';
+import { FrameComponent } from './frame.component';
 
 describe('UniverseComponent', () => {
-  let component: UniverseComponent;
-  let fixture: ComponentFixture<UniverseComponent>;
+  let component: FrameComponent;
+  let fixture: ComponentFixture<FrameComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UniverseComponent ]
+      declarations: [ FrameComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UniverseComponent);
+    fixture = TestBed.createComponent(FrameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

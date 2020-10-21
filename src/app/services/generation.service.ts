@@ -10,7 +10,7 @@ export const MIN_INTENSITY = 29;
 const DECAY_RATE = 24;
 
 @Injectable()
-export class GenerationsService {
+export class GenerationService {
 
   genMinus1: string;
   genMinus2: string;
@@ -58,7 +58,7 @@ export class GenerationsService {
     return cells;
   }
 
-  nextGen(cells: cell[][]){
+  nextGeneration(cells: cell[][]){
 
     if (!this.stagnation) this.checkStagnation(cells);
 

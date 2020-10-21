@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable, Subscription, interval } from 'rxjs';
-import { GenerationsService, cell, MAX_INTENSITY, MIN_INTENSITY } from 'app/services/generations.service';
+import { GenerationService, cell, MAX_INTENSITY, MIN_INTENSITY } from 'app/services';
 
-const GENERATION_DURATION = 200;
+const GENERATION_DURATION = 15200;
 
 @Component({
-  selector: 'gol-universe',
-  templateUrl: './universe.component.html',
-  styleUrls: ['./universe.component.scss']
+  selector: 'gol-frame',
+  templateUrl: './frame.component.html',
+  styleUrls: ['./frame.component.scss']
 })
-export class UniverseComponent implements OnInit, OnDestroy {
+export class FrameComponent implements OnInit, OnDestroy {
 
   public cells: cell[][];
   private timer: Observable<number>;  
@@ -22,13 +22,13 @@ export class UniverseComponent implements OnInit, OnDestroy {
   @Input() cellSize: number;
   @Input() showDecay: boolean;
 
-  constructor(private generationsService: GenerationsService) {
+  constructor(private generationService: GenerationService) {
   }
 
   ngOnInit() {
-    this.cells = this.generationsService.createFreshGeneration(this.noRows, this.noCols);    
+    this.cells = this.generationService.createFreshGeneration(this.noRows, this.noCols);    
     this.run();
-    this.generationsService.onStagnation.subscribe(() => {
+    this.generationService.onStagnation.subscribe(() => {
       this.stagnation = true;
     });
   }
@@ -40,20 +40,20 @@ export class UniverseComponent implements OnInit, OnDestroy {
   restart() {
     this.stagnation = false;
     this.tickSub.unsubscribe();
-    this.cells = this.generationsService.createFreshGeneration(this.noRows, this.noCols);
+    this.cells = this.generationService.createFreshGeneration(this.noRows, this.noCols);
   }
 
   clear() {
     this.stagnation = false;
     this.tickSub.unsubscribe();
-    this.cells = this.generationsService.createFreshSpace(this.noRows, this.noCols);
+    this.cells = this.generationService.createFreshSpace(this.noRows, this.noCols);
   }
 
   run() {
     this.running = true;
     this.timer = interval(GENERATION_DURATION);
     this.tickSub = this.timer.subscribe(()=> {
-      this.cells = this.generationsService.nextGen(this.cells);
+      this.cells = this.generationService.nextGeneration(this.cells);
     });
   }
 
@@ -69,7 +69,7 @@ export class UniverseComponent implements OnInit, OnDestroy {
   cellClicked(cell: cell) {
     if (this.running) return;
     this.stagnation = false;
-    this.generationsService.resetStagnation();
+    this.generationService.resetStagnation();
     
     cell.alive = !cell.alive;
     cell.intensity = (cell.alive ? MAX_INTENSITY : MIN_INTENSITY)
