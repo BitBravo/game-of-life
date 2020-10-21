@@ -4,24 +4,29 @@
     <div class="left-pane col-lg-4">
       <h5>Control Buttons</h5>
       <div class="actions-bars">
-        <button type="button" class="btn btn-primary" (click)="startFrame()">Start</button>
-        <button type="button" class="btn btn-primary" (click)="pauseFrame()">Pause</button>
-        <button type="button" class="btn btn-primary" (click)="clearFrame()">Clear</button>
-        <button type="button" class="btn btn-primary" (click)="restartFrame()">Restart</button>
+        <button type="button" class="btn btn-primary" (click)="startFrame()">
+          Start
+        </button>
+        <button type="button" class="btn btn-primary" (click)="pauseFrame()">
+          Pause
+        </button>
+        <button type="button" class="btn btn-primary" (click)="restartFrame()">
+          Restart
+        </button>
       </div>
       <hr />
       <h5>Grid Setting</h5>
       <div class="input-group">
         <label>Rows: </label>
-        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+        <input type="number" [(ngModel)]="nRows" (input)="changeAction()" />
       </div>
       <div class="input-group">
         <label>Columns: </label>
-        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+        <input type="number" [(ngModel)]="nCols" (input)="changeAction()" />
       </div>
       <div class="input-group">
         <label>Duration: </label>
-        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+        <input type="number" [(ngModel)]="duration" (input)="changeAction()" />
       </div>
     </div>
     <div class="col-lg-8 right-frame">
@@ -29,3 +34,5 @@
     </div>
   </div>
 </div>
+<ng-snotify></ng-snotify>
+

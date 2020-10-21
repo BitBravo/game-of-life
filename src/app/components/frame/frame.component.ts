@@ -17,7 +17,7 @@ export class FrameComponent implements OnInit, OnDestroy {
   @Input() nCols: number = 35;
   @Input() nRows: number = 17;
   @Input() cellSize: number = 15;
-  @Input() duration: number = 500;
+  @Input() duration: number = 0.5;
 
   constructor(private generationService: GenerationService) {}
 
@@ -37,7 +37,7 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   run() {
     this.running = true;
-    this.timer = interval(this.duration);
+    this.timer = interval(this.duration * 1000);
     this.tickSub = this.timer.subscribe(() => {
       this.cells = this.generationService.nextGeneration(this.cells);
     });
@@ -48,18 +48,12 @@ export class FrameComponent implements OnInit, OnDestroy {
     this.tickSub.unsubscribe();
   }
 
-  clear() {
-    this.stagnation = false;
-    this.tickSub.unsubscribe();
-    this.cells = this.generationService.createEmptyGrid(this.nRows, this.nCols);
-  }
-
   restart() {
     this.stagnation = false;
     this.tickSub.unsubscribe();
     this.cells = this.generationService.createInitalGrid(
       this.nRows,
-      this.nRows
+      this.nCols
     );
   }
 

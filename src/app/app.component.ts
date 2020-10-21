@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { FrameComponent } from "./components";
+import { SnotifyService } from "ng-snotify";
 
 @Component({
   selector: "gol-root",
@@ -7,24 +8,68 @@ import { FrameComponent } from "./components";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
+  constructor(private toastrService: SnotifyService) {}
+
   @ViewChild(FrameComponent)
   private frame: FrameComponent;
 
-  nCols = 35;
   nRows = 17;
-  empty = false;
+  nCols = 35;
+  duration: number = 1;
+  running = false;
 
   startFrame() {
+    const { valid, msg } = this.validation();
+    if (!valid) {
+      this.showError(msg);
+      return;
+    }
+
+    this.running = true;
     this.frame.run();
   }
 
-  clearFrame() {
-    this.empty = true;
-    this.frame.clear();
+  pauseFrame() {
+    if(!this.running) return;
+
+    this.running = false;
+    this.frame.pause();
   }
 
   restartFrame() {
-    this.empty = false;
+    if(!this.running) return;
+
     this.frame.restart();
+    this.frame.run();
+  }
+
+  showError(text) {
+    this.toastrService.error(text, "Validation Error", {
+      timeout: 2000,
+      showProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+  }
+
+  changeAction(): void {
+    // console.log("jfwiefjwiejfiwjefi");
+    // console.log(this.nRows, this.duration, this.nCols);
+    // // this.frame.pause();
+    // const { valid, msg } = this.validation();
+    // if (valid) console.log();
+  }
+
+  validation(): any {
+    if (0.1 > this.duration || this.duration > 10) {
+      return { valid: false, msg: "Duration value should be 0.1 ~ 10" };
+    }
+    if (this.nRows < 10) {
+      return { valid: false, msg: "Rows should be large than 10" };
+    }
+    if (this.nCols < 20) {
+      return { valid: false, msg: "Cols should be large than 20" };
+    }
+    return { valid: true };
   }
 }
