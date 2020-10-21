@@ -12,25 +12,19 @@ export class AppComponent {
 
   nCols = 35;
   nRows = 17;
-  cellSize = 20;
   empty = false;
 
-  runUniverse() {
+  startFrame() {
     this.frame.run();
   }
 
-  clearUniverse() {
+  clearFrame() {
     this.empty = true;
     this.frame.clear();
   }
 
-  restartUniverse() {
+  restartFrame() {
     this.empty = false;
     this.frame.restart();
-  }
-
-  isEmpty() {
-    console.log(this.empty);
-    return this.empty;
   }
 }

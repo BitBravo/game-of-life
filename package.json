@@ -23,7 +23,10 @@
     "@angular/platform-browser-dynamic": "^10.1.6",
     "@angular/platform-server": "^10.1.6",
     "@angular/router": "^10.1.6",
+    "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.14.3",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.3",
     "zone.js": "^0.10.3"

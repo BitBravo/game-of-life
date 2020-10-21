@@ -1,14 +1,31 @@
-<div>dddhfuwhefuh</div>
-<mat-grid-list cols="10">
-  <mat-grid-tile colspan="3">
-    <button mat-button>Basic</button>
-    <button mat-button color="primary">Primary</button>
-    <button mat-button color="accent">Accent</button>
-    <button mat-button color="warn">Warn</button>
-    <button mat-button disabled>Disabled</button>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="7">
-    <gol-frame #universe [nCols]="nCols" [nRows]="nRows" [cellSize]="cellSize">
-    </gol-frame>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="container">
+  <h1 class="title">Game of life - Test Task</h1>
+  <div class="content row">
+    <div class="left-pane col-lg-4">
+      <h5>Control Buttons</h5>
+      <div class="actions-bars">
+        <button type="button" class="btn btn-primary" (click)="startFrame()">Start</button>
+        <button type="button" class="btn btn-primary" (click)="pauseFrame()">Pause</button>
+        <button type="button" class="btn btn-primary" (click)="clearFrame()">Clear</button>
+        <button type="button" class="btn btn-primary" (click)="restartFrame()">Restart</button>
+      </div>
+      <hr />
+      <h5>Grid Setting</h5>
+      <div class="input-group">
+        <label>Rows: </label>
+        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+      </div>
+      <div class="input-group">
+        <label>Columns: </label>
+        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+      </div>
+      <div class="input-group">
+        <label>Duration: </label>
+        <input type="number" aria-describedby="inputGroup-sizing-sm" />
+      </div>
+    </div>
+    <div class="col-lg-8 right-frame">
+      <gol-frame #frame [nCols]="nCols" [nRows]="nRows"> </gol-frame>
+    </div>
+  </div>
+</div>

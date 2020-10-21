@@ -1,5 +1,5 @@
-<div class="row" *ngFor="let row of cells" [ngClass]="{'stagnation': stagnation}">
-  <div class="cell"
+<div class="frame-row" *ngFor="let row of cells" [ngClass]="{'stagnation': stagnation}">
+  <div class="frame-cell"
     *ngFor="let cell of row"
     [ngClass]="{'stagnation': stagnation, 'running': running, 'alive': cell.alive}"
     [style.width]="cellSize + 'px'"

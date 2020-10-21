@@ -4,13 +4,14 @@ $stagnation-color: red;
 $cell-gap: 1px;
 
 :host {
+    position: relative;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
 }
 
-.row {
+.frame-row {
     display: flex;
     flex-direction: row;
     flex: 1 1 auto;
@@ -29,12 +30,12 @@ $cell-gap: 1px;
     }
 }
 
-.cell {
+.frame-cell {
     border: 2px solid transparent;
     margin: $cell-gap;
 }
 
-.cell:hover {
+.frame-cell:hover {
     border-color: gray;
     border-style: dotted;
 }

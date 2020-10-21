@@ -16,7 +16,7 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   @Input() nCols: number = 35;
   @Input() nRows: number = 17;
-  @Input() cellSize: number = 20;
+  @Input() cellSize: number = 15;
   @Input() duration: number = 500;
 
   constructor(private generationService: GenerationService) {}
@@ -26,7 +26,6 @@ export class FrameComponent implements OnInit, OnDestroy {
       this.nRows,
       this.nCols
     );
-    // this.run();
     this.generationService.onStagnation.subscribe(() => {
       this.stagnation = true;
     });
