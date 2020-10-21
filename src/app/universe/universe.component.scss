@@ -34,9 +34,7 @@ $cell-gap: 1px;
 }
 
 .cell {
-    background-color: $cell-color;
-
-    // border: 2px solid transparent;
+    border: 2px solid transparent;
     margin: $cell-gap;
 }
 
