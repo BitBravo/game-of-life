@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import { Observable, Subscription, interval } from "rxjs";
-import { GenerationService, cell } from "app/services";
+import { GenerationService, cell } from "../../services";
 
 @Component({
   selector: "gol-frame",

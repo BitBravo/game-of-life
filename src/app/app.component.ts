@@ -36,6 +36,7 @@ export class AppComponent {
     this.frame.pause();
   }
 
+
   restartFrame() {
     if(!this.running) return;
 
