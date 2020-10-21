@@ -1,16 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FrameComponent } from './frame.component';
+import { GenerationService } from '../../services';
 
-describe('UniverseComponent', () => {
+describe('FrameComponent', () => {
   let component: FrameComponent;
   let fixture: ComponentFixture<FrameComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FrameComponent ]
-    })
-    .compileComponents();
+      providers: [GenerationService],
+      declarations: [FrameComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

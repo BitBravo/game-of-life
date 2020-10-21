@@ -3,7 +3,7 @@ import { FrameComponent } from "./components";
 import { SnotifyService } from "ng-snotify";
 
 @Component({
-  selector: "gol-root",
+  selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
@@ -36,7 +36,6 @@ export class AppComponent {
     this.frame.pause();
   }
 
-
   restartFrame() {
     if(!this.running) return;
 
@@ -54,12 +53,7 @@ export class AppComponent {
   }
 
   changeAction(): void {
-    // console.log("jfwiefjwiejfiwjefi");
-    // console.log(this.nRows, this.duration, this.nCols);
-    // // this.frame.pause();
-    // const { valid, msg } = this.validation();
-    // if (valid) console.log();
-  }
+ }
 
   validation(): any {
     if (0.1 > this.duration || this.duration > 10) {

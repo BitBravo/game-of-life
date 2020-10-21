@@ -1,12 +1,14 @@
-import { Component, OnInit, OnDestroy, Input } from "@angular/core";
-import { Observable, Subscription, interval } from "rxjs";
-import { GenerationService, cell } from "../../services";
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Observable, Subscription, interval } from 'rxjs';
+import { GenerationService, cell } from '../../services';
+
 
 @Component({
-  selector: "gol-frame",
-  templateUrl: "./frame.component.html",
-  styleUrls: ["./frame.component.scss"],
+  selector: 'gol-frame',
+  templateUrl: './frame.component.html',
+  styleUrls: ['./frame.component.scss'],
 })
+
 export class FrameComponent implements OnInit, OnDestroy {
   public cells: cell[][];
   private timer: Observable<number>;
@@ -32,7 +34,8 @@ export class FrameComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.tickSub.unsubscribe();
+    if(this.tickSub && !this.tickSub.closed)
+        this.tickSub.unsubscribe();
   }
 
   run() {

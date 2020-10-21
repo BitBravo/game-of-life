@@ -7,7 +7,6 @@ export interface cell {
 
 export const MAX_INTENSITY = 255;
 export const MIN_INTENSITY = 29;
-const DECAY_RATE = 24;
 
 @Injectable()
 export class GenerationService {

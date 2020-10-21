@@ -1,32 +1,33 @@
 :host {
-  display: block; 
-}
-
-.title {
-  padding-top: 100px;
-}
-
-.left-pane {
-  margin: 50px 0;
-}
-
-.right-frame {
+    display: block; 
+  }
+  
+  .title {
+    padding-top: 100px;
+  }
+  
+  .left-pane {
+    margin: 50px 0;
+  }
+  
+  .right-frame {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+  }
+  
+  .actions-bars {
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.actions-bars {
-  display: flex;
-  gap: 10px 15px;
-  button {
-    width: 75px;
+    gap: 10px 15px;
+    button {
+      width: 75px;
+    }
   }
-}
-
-.input-group {
-  padding: 5px;
-  label {
-    min-width: 100px;
+  
+  .input-group {
+    padding: 5px;
+    label {
+      min-width: 100px;
+    }
   }
-}
+  
