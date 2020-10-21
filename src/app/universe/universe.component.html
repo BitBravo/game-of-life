@@ -1,0 +1,10 @@
+<div class="row" *ngFor="let row of cells" [ngClass]="{'stagnation': stagnation}">
+  <div class="cell"
+    *ngFor="let cell of row"
+    [ngClass]="{'stagnation': stagnation, 'running': running}"
+    [style.width]="cellSize + 'px'"
+    [style.height]="cellSize + 'px'"
+    [style.background-color]="getCellColor(cell)"
+    (click)="cellClicked(cell)">
+  </div>  
+</div>
