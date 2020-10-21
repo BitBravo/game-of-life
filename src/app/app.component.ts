@@ -1,21 +1,19 @@
-import { Component, ViewChild } from '@angular/core';
-import { FrameComponent } from './frame';
+import { Component, ViewChild } from "@angular/core";
+import { FrameComponent } from "./components";
 
 @Component({
-  selector: 'gol-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "gol-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
   @ViewChild(FrameComponent)
   private frame: FrameComponent;
 
-  noCols = 35;
-  noRows = 17;
+  nCols = 35;
+  nRows = 17;
   cellSize = 20;
-  showDecay = false;
   empty = false;
-
 
   runUniverse() {
     this.frame.run();
@@ -32,8 +30,7 @@ export class AppComponent {
   }
 
   isEmpty() {
-    console.log(this.empty);  
+    console.log(this.empty);
     return this.empty;
   }
-
 }

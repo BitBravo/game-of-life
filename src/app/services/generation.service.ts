@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, Output } from '@angular/core';
+import { Injectable, EventEmitter, Output } from "@angular/core";
 
 export interface cell {
   alive: boolean;
@@ -11,29 +11,27 @@ const DECAY_RATE = 24;
 
 @Injectable()
 export class GenerationService {
-
   genMinus1: string;
   genMinus2: string;
   stagnation: boolean;
 
   @Output() onStagnation = new EventEmitter<undefined>();
 
-  constructor() { }
+  constructor() {}
 
-  createFreshGeneration(noRows, noCols): cell[][] {
-
-    this.genMinus1 = '';
-    this.genMinus2 = '';
+  createInitalGrid(nRows, nCols): cell[][] {
+    this.genMinus1 = "";
+    this.genMinus2 = "";
     this.stagnation = false;
 
     let cells = [];
-    for (let i=0; i<noRows; i++) {
+    for (let i = 0; i < nRows; i++) {
       let row = [];
-      for (let j=0; j<noCols; j++) {
-        let alive = !!(Math.round(Math.random()));
+      for (let j = 0; j < nCols; j++) {
+        let alive = !!Math.round(Math.random());
         row.push({
           alive: alive,
-          intensity: (alive ? MAX_INTENSITY : MIN_INTENSITY)
+          intensity: alive ? MAX_INTENSITY : MIN_INTENSITY,
         });
       }
       cells.push(row);
@@ -41,53 +39,39 @@ export class GenerationService {
     return cells;
   }
 
-  createFreshSpace(noRows, noCols): cell[][] {
-
-    this.genMinus1 = '';
-    this.genMinus2 = '';
+  createEmptyGrid(nRows, nCols): cell[][] {
+    this.genMinus1 = "";
+    this.genMinus2 = "";
     this.stagnation = false;
 
-    let cells =[];
-    for (let i=0; i<noRows; i++) {
+    let cells = [];
+    for (let i = 0; i < nRows; i++) {
       let row = [];
-      for (let j=0; j<noCols; j++) {
-        row.push({alive: false});
+      for (let j = 0; j < nCols; j++) {
+        row.push({ alive: false });
       }
       cells.push(row);
     }
     return cells;
   }
 
-  nextGeneration(cells: cell[][]){
-
+  nextGeneration(cells: cell[][]) {
     if (!this.stagnation) this.checkStagnation(cells);
-
     let nextGen = this.cloneGen(cells);
 
     for (var i = 0; i < cells.length; i++) {
       for (var j = 0; j < cells[i].length; j++) {
-      
         let amoutNeightbours = this.countNeightbours(cells, i, j);
-        
+
         if (cells[i][j].alive) {
           if (amoutNeightbours < 2 || amoutNeightbours > 3) {
-            // Dying
             nextGen[i][j].alive = false;
-            nextGen[i][j].intensity = MAX_INTENSITY - DECAY_RATE;
           } else {
-            // Surviving
             nextGen[i][j].alive = true;
-            nextGen[i][j].intensity = MAX_INTENSITY;
           }
         } else {
           if (amoutNeightbours === 3) {
-            // Born
             nextGen[i][j].alive = true;
-            nextGen[i][j].intensity = MAX_INTENSITY;
-          } else if (cells[i][j].intensity > (MIN_INTENSITY+DECAY_RATE)) {
-            nextGen[i][j].intensity = cells[i][j].intensity - DECAY_RATE;
-          } else {
-            nextGen[i][j].intensity = MIN_INTENSITY;
           }
         }
       }
@@ -105,21 +89,20 @@ export class GenerationService {
 
   private countNeightbours(cells, i, j): number {
     let cnt = 0;
-    if (cells[i-1] && cells[i-1][j-1] && cells[i-1][j-1].alive) cnt++;
-    if (cells[i-1] && cells[i-1][j] && cells[i-1][j].alive) cnt++;
-    if (cells[i-1] && cells[i-1][j+1] && cells[i-1][j+1].alive) cnt++;
-    if (cells[i] && cells[i][j-1] && cells[i][j-1].alive) cnt++;
-    if (cells[i] && cells[i][j+1] && cells[i][j+1].alive) cnt++;
-    if (cells[i+1] && cells[i+1][j-1] && cells[i+1][j-1].alive) cnt++;
-    if (cells[i+1] && cells[i+1][j] && cells[i+1][j].alive) cnt++;
-    if (cells[i+1] && cells[i+1][j+1] && cells[i+1][j+1].alive) cnt++;
+    if (cells[i - 1] && cells[i - 1][j - 1] && cells[i - 1][j - 1].alive) cnt++;
+    if (cells[i - 1] && cells[i - 1][j] && cells[i - 1][j].alive) cnt++;
+    if (cells[i - 1] && cells[i - 1][j + 1] && cells[i - 1][j + 1].alive) cnt++;
+    if (cells[i] && cells[i][j - 1] && cells[i][j - 1].alive) cnt++;
+    if (cells[i] && cells[i][j + 1] && cells[i][j + 1].alive) cnt++;
+    if (cells[i + 1] && cells[i + 1][j - 1] && cells[i + 1][j - 1].alive) cnt++;
+    if (cells[i + 1] && cells[i + 1][j] && cells[i + 1][j].alive) cnt++;
+    if (cells[i + 1] && cells[i + 1][j + 1] && cells[i + 1][j + 1].alive) cnt++;
     return cnt;
   }
 
   private checkStagnation(newCells: cell[][]) {
-
     let currentGen = this.serializeGeneration(newCells);
-    
+
     if (currentGen === this.genMinus1 || currentGen === this.genMinus2) {
       this.stagnation = true;
       this.onStagnation.emit();

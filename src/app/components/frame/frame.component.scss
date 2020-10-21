@@ -1,6 +1,6 @@
 $border-color: #666;
-$cell-color: red;
-$stagnation-color: #500;
+$cell-color: white;
+$stagnation-color: red;
 $cell-gap: 1px;
 
 :host {
@@ -14,7 +14,7 @@ $cell-gap: 1px;
     display: flex;
     flex-direction: row;
     flex: 1 1 auto;
-    background-color: #1d1d1d;
+    background-color: #1d1d1d !important;
 
     border-style: solid;
     border-color: $border-color;
@@ -27,10 +27,6 @@ $cell-gap: 1px;
     &:last-child {
         border-bottom-width: 1px;
     }
-
-    &.stagnation {
-        border-color: $stagnation-color;
-    }
 }
 
 .cell {
@@ -38,14 +34,13 @@ $cell-gap: 1px;
     margin: $cell-gap;
 }
 
-.cell:hover:not(.running) {
+.cell:hover {
     border-color: gray;
     border-style: dotted;
 }
 
 .alive {
     background-color: $cell-color;
-
     &.stagnation {
         background-color: $stagnation-color;
     }

@@ -1,7 +1,14 @@
-<gol-frame
-    #universe
-    [noCols]="noCols"
-    [noRows]="noRows"
-    [cellSize]="cellSize"
-    [showDecay]="showDecay">
-</gol-frame>
+<div>dddhfuwhefuh</div>
+<mat-grid-list cols="10">
+  <mat-grid-tile colspan="3">
+    <button mat-button>Basic</button>
+    <button mat-button color="primary">Primary</button>
+    <button mat-button color="accent">Accent</button>
+    <button mat-button color="warn">Warn</button>
+    <button mat-button disabled>Disabled</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="7">
+    <gol-frame #universe [nCols]="nCols" [nRows]="nRows" [cellSize]="cellSize">
+    </gol-frame>
+  </mat-grid-tile>
+</mat-grid-list>
