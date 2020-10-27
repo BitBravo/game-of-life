@@ -2,6 +2,9 @@
 
 Game Of Life Angular 10
 
+[DEMO](http://github.com)
+
+![How to work](./imgs/working.gif)
 ---
 
 ## 1. Requirements
@@ -77,3 +80,4 @@ After installing node, this project will need yarn too, so just run the followin
 
     $ npm run test
 
+![How to test](./imgs/test.gif)
